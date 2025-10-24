@@ -101,6 +101,8 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 ![скидка](https://github.com/user-attachments/assets/a95cb2aa-e787-4c5f-834c-38dcd69b37dc)
 
   5) "Платеж":
+
+     
 ![платеж](https://github.com/user-attachments/assets/9d3c01c6-51a3-4069-8ce8-6a033e544cc6)
 
 # <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab3
