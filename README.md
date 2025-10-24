@@ -73,7 +73,7 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
 <h3>
   
-2.1 [SQL-код создания таблиц]
+2.1 [SQL-код создания таблиц]https://github.com/sparrow-with-a-laptop/database/blob/main/лаб2/SQLFile1.sql
 
 2.2 Диаграмма БД "TradeRentalManagement":
   ![diagram-TradeRentalManagement](https://github.com/user-attachments/assets/137a4881-616e-4db5-bf0d-1e17d7ea53dc)
