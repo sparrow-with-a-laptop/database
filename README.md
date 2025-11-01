@@ -51,12 +51,13 @@ ER-модель д.б. представлена в виде ER-диаграмм�
   <a href="#client"></a>
 1.1 ER-модель:
 
-<img width="1481" height="911" alt="ER-модель" src="https://github.com/user-attachments/assets/97f84658-c72e-4eeb-99cd-6285b0b70ae7" />
+  <img width="1481" height="911" alt="ER-модель" src="https://github.com/user-attachments/assets/96e15212-83e5-4f3b-bc48-b1a3dc56a021" />
 
  
 1.2 Реляционная модель:
 
-<img width="771" height="537" alt="Реляционная модель" src="https://github.com/user-attachments/assets/0da4f585-092d-4919-a224-642dba75cd97" />
+<img width="791" height="537" alt="Реляционная модель" src="https://github.com/user-attachments/assets/17404d1f-206d-4d95-95cb-5a7e210154a7" />
+
 
 
 # <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab2
