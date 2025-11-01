@@ -77,8 +77,8 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 2.1 [SQL-код создания таблиц](https://github.com/sparrow-with-a-laptop/database/blob/main/лаб2/SQLFile1.sql)
 
 2.2 Диаграмма БД "TradeRentalManagement":
-  ![diagram-TradeRentalManagement](https://github.com/user-attachments/assets/137a4881-616e-4db5-bf0d-1e17d7ea53dc)
 
+![diagram-TradeRentalManagement](https://github.com/user-attachments/assets/b0caedf7-f613-4b25-a3a1-e95ef1d2a897)
 
   
 2.3 Примеры заполненных таблиц:
@@ -103,8 +103,8 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
   5) "Платеж":
 
-     
-![платеж](https://github.com/user-attachments/assets/9d3c01c6-51a3-4069-8ce8-6a033e544cc6)
+     ![платеж](https://github.com/user-attachments/assets/a6f523da-8955-4b31-9896-0b336a94008d)
+
 
 # <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab3
 [Назад](#content)
