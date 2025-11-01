@@ -86,7 +86,7 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 <h4>
   
   1) "Торговая точка":
-  ![торговая_точка](https://github.com/user-attachments/assets/8b90baae-22c5-4391-a60b-011fa8701f14)
+     ![торговая_точка](https://github.com/user-attachments/assets/8b90baae-22c5-4391-a60b-011fa8701f14)
 
 
   2) "Договор":
@@ -94,12 +94,12 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
 
   3) "Клиент":
-![клиент](https://github.com/user-attachments/assets/c14272c2-3035-442f-9bd4-1859930a7bb5)
+     ![клиент](https://github.com/user-attachments/assets/c14272c2-3035-442f-9bd4-1859930a7bb5)
 
      
   4) "Скидка":
 
-![скидка](https://github.com/user-attachments/assets/a95cb2aa-e787-4c5f-834c-38dcd69b37dc)
+     ![скидка](https://github.com/user-attachments/assets/a95cb2aa-e787-4c5f-834c-38dcd69b37dc)
 
   5) "Платеж":
 
