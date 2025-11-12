@@ -112,4 +112,4 @@ ER-модель д.б. представлена в виде ER-диаграмм�
   <a href="#client"></a>
 </h3>
 
-![лаб 3 Часть 1]<https://buildin.ai/share/1e1c130b-0f22-4196-8d92-7e3c71aacb10?code=XAKZ9E[Buildin.AI]лаб 3 Часть 1>
+![лаб 3 Часть 1](https://buildin.ai/share/1e1c130b-0f22-4196-8d92-7e3c71aacb10?code=XAKZ9E[Buildin.AI]лаб 3 Часть 1)
