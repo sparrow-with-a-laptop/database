@@ -123,8 +123,11 @@ ER-модель д.б. представлена в виде ER-диаграмм�
   [Файл](https://github.com/sparrow-with-a-laptop/database/blob/main/лаб3/лаб3_2.docx) со второй частью
 
 
-
-</h4>
+# <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab4
+[Назад](#content)
+<h3 align="left">
+  <a href="#client"></a>
+</h3>
 
 Ссылка на сайт - [Лаб 4](https://buildin.ai/share/ad0d748f-6c64-4a2a-900b-6981783d4b3f?code=XAKZ9E)
   
