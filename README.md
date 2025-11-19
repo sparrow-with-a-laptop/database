@@ -126,7 +126,7 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
 </h4>
 
-Ссылка на сайт - [Лаб 4](https://buildin.ai/ad0d748f-6c64-4a2a-900b-6981783d4b3f)
+Ссылка на сайт - [Лаб 4](https://buildin.ai/share/ad0d748f-6c64-4a2a-900b-6981783d4b3f?code=XAKZ9E)
   
   [Файл](https://github.com/sparrow-with-a-laptop/database/blob/main/лаб4/лаб4.pdf) 
 
