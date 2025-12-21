@@ -134,8 +134,9 @@ ER-модель д.б. представлена в виде ER-диаграмм�
   [Файл](https://github.com/sparrow-with-a-laptop/database/blob/main/лаб4/лаб4.pdf) 
 
 
+
 <a id="lab5"></a>
-# Лабораторная работа №5
+# <img width="37" height="20" alt="image" src="https://github.com/user-attachments/assets/b54bd8d8-2f07-4d8f-bb41-bc53ebb12c12" /> Lab5
 [Назад](#content)
 <h3 align="left">
   <a href="#client"></a>
