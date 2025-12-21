@@ -135,8 +135,7 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
 
 
-<a id="lab5"></a>
-# <img width="37" height="20" alt="image" src="https://github.com/user-attachments/assets/b54bd8d8-2f07-4d8f-bb41-bc53ebb12c12" /> Lab5
+# <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab5
 [Назад](#content)
 <h3 align="left">
   <a href="#client"></a>
