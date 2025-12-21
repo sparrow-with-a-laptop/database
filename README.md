@@ -182,6 +182,8 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
   6.4. [Сравнение запросов]()
 </h3>
+
+
 # <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab7
 [Назад](#content)
 <h3 align="left">
