@@ -150,8 +150,7 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
 
 
-<a id="lab6"></a>
-# Лабораторная работа №6
+# <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab6
 [Назад](#content)
 <h3 align="left">
   <a href="#client"></a>
@@ -183,9 +182,7 @@ ER-модель д.б. представлена в виде ER-диаграмм�
 
   6.4. [Сравнение запросов]()
 </h3>
-
-<a id="lab7"></a>
-# Лабораторная работа №7
+# <img src="https://github.com/user-attachments/assets/e080adec-6af7-4bd2-b232-d43cb37024ac" width="20" height="20"/> Lab7
 [Назад](#content)
 <h3 align="left">
   <a href="#client"></a>
