@@ -1,7 +1,7 @@
 USE TradeRentalManagement;
 
 ALTER TABLE Client
-ALTER COLUMN Телефон ADD MASKED WITH (FUNCTION = 'partial(4,"xxxxxxx",0)')
+ALTER COLUMN Телефон ADD MASKED WITH (FUNCTION = 'partial(2,"xxxxxx",2)')
 
 ALTER TABLE Client
 ALTER COLUMN ФИО_Контактного_Лица ADD MASKED WITH (FUNCTION = 'partial(1,"xxxx",2)')
@@ -13,9 +13,12 @@ EXECUTE AS USER = 'User_Manager'
 SELECT TOP 2 Телефон, ФИО_Контактного_Лица FROM Client
 REVERT
 
+GRANT SELECT ON Client TO Role_Employee
 EXECUTE AS USER = 'User_Employee'
 SELECT TOP 2 Телефон, ФИО_Контактного_Лица FROM Client
 REVERT
+GO
+DENY SELECT ON Client TO Role_Employee
 GO
 
 CREATE FUNCTION MaskPhone (@phone NVARCHAR(50))
