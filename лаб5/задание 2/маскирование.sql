@@ -1,20 +1,20 @@
 USE TradeRentalManagement;
 
 ALTER TABLE Client
-ALTER COLUMN Телефон ADD MASKED WITH (FUNCTION = 'partial(4,"xxxxxxx",0)')
+ALTER COLUMN РўРµР»РµС„РѕРЅ ADD MASKED WITH (FUNCTION = 'partial(4,"xxxxxxx",0)')
 
 ALTER TABLE Client
-ALTER COLUMN ФИО_Контактного_Лица ADD MASKED WITH (FUNCTION = 'partial(1,"xxxx",2)')
+ALTER COLUMN Р¤РРћ_РљРѕРЅС‚Р°РєС‚РЅРѕРіРѕ_Р›РёС†Р° ADD MASKED WITH (FUNCTION = 'partial(1,"xxxx",2)')
 
 GRANT UNMASK TO Role_Manager
 DENY UNMASK TO Role_Employee
 
 EXECUTE AS USER = 'User_Manager'
-SELECT TOP 2 Телефон, ФИО_Контактного_Лица FROM Client
+SELECT TOP 2 РўРµР»РµС„РѕРЅ, Р¤РРћ_РљРѕРЅС‚Р°РєС‚РЅРѕРіРѕ_Р›РёС†Р° FROM Client
 REVERT
 
 EXECUTE AS USER = 'User_Employee'
-SELECT TOP 2 Телефон, ФИО_Контактного_Лица FROM Client
+SELECT TOP 2 РўРµР»РµС„РѕРЅ, Р¤РРћ_РљРѕРЅС‚Р°РєС‚РЅРѕРіРѕ_Р›РёС†Р° FROM Client
 REVERT
 GO
 
@@ -32,9 +32,9 @@ RETURNS NVARCHAR(255)
 AS
 BEGIN
     IF IS_MEMBER('Role_Manager') = 1 RETURN @address
-    IF @address LIKE '%Москва%' RETURN 'г. Москва'
-    IF @address LIKE '%Санкт-Петербург%' RETURN 'г. Санкт-Петербург'
-    RETURN 'Адрес клиента'
+    IF @address LIKE '%РњРѕСЃРєРІР°%' RETURN 'Рі. РњРѕСЃРєРІР°'
+    IF @address LIKE '%РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі%' RETURN 'Рі. РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі'
+    RETURN 'РђРґСЂРµСЃ РєР»РёРµРЅС‚Р°'
 END
 GO
 
@@ -42,9 +42,9 @@ CREATE VIEW vw_Client_Masked
 AS
 SELECT 
     ID,
-    Название,
-    dbo.MaskPhone(Телефон) AS Телефон,
-    dbo.MaskAddress(Юридический_Адрес) AS Юридический_Адрес
+    РќР°Р·РІР°РЅРёРµ,
+    dbo.MaskPhone(РўРµР»РµС„РѕРЅ) AS РўРµР»РµС„РѕРЅ,
+    dbo.MaskAddress(Р®СЂРёРґРёС‡РµСЃРєРёР№_РђРґСЂРµСЃ) AS Р®СЂРёРґРёС‡РµСЃРєРёР№_РђРґСЂРµСЃ
 FROM Client
 GO
 
