@@ -48,6 +48,7 @@ SELECT
 FROM Client
 GO
 
+GRANT SELECT ON vw_Client_Masked TO Role_Manager
 GRANT SELECT ON vw_Client_Masked TO Role_Employee
 REVOKE SELECT ON Client FROM Role_Employee
 
