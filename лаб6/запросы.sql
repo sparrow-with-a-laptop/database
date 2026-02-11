@@ -1,27 +1,26 @@
-USE TradeRentalManagement;
-GO
---Клиенты, заключившие более 1-го договора с начала текущего года
 
--- Реляционная модель:
+--РљР»РёРµРЅС‚С‹, Р·Р°РєР»СЋС‡РёРІС€РёРµ Р±РѕР»РµРµ 1-РіРѕ РґРѕРіРѕРІРѕСЂР° СЃ РЅР°С‡Р°Р»Р° С‚РµРєСѓС‰РµРіРѕ РіРѕРґР°
+
+-- Р РµР»СЏС†РёРѕРЅРЅР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    cl.Название AS Клиент,
-    COUNT(c.ID) AS Количество_Договоров
+    cl.РќР°Р·РІР°РЅРёРµ AS РљР»РёРµРЅС‚,
+    COUNT(c.ID) AS РљРѕР»РёС‡РµСЃС‚РІРѕ_Р”РѕРіРѕРІРѕСЂРѕРІ
 FROM 
     Client cl
-    JOIN Contract c ON cl.ID = c.ID_Клиента
+    JOIN Contract c ON cl.ID = c.ID_РљР»РёРµРЅС‚Р°
 WHERE 
-    YEAR(c.Дата_Заключения) = YEAR(GETDATE())
+    YEAR(c.Р”Р°С‚Р°_Р—Р°РєР»СЋС‡РµРЅРёСЏ) = YEAR(GETDATE())
 GROUP BY 
-    cl.ID, cl.Название
+    cl.ID, cl.РќР°Р·РІР°РЅРёРµ
 HAVING 
     COUNT(c.ID) > 1
 ORDER BY 
-    Количество_Договоров DESC;
+    РљРѕР»РёС‡РµСЃС‚РІРѕ_Р”РѕРіРѕРІРѕСЂРѕРІ DESC;
 
--- Графовая модель:
+-- Р“СЂР°С„РѕРІР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    client.name AS Клиент,
-    COUNT(DISTINCT contract.id) AS Количество_Договоров
+    client.name AS РљР»РёРµРЅС‚,
+    COUNT(DISTINCT contract.id) AS РљРѕР»РёС‡РµСЃС‚РІРѕ_Р”РѕРіРѕРІРѕСЂРѕРІ
 FROM 
     client_node AS client,
     contract_node AS contract
@@ -33,25 +32,25 @@ GROUP BY
 HAVING 
     COUNT(DISTINCT contract.id) > 1
 ORDER BY 
-    Количество_Договоров DESC;
+    РљРѕР»РёС‡РµСЃС‚РІРѕ_Р”РѕРіРѕРІРѕСЂРѕРІ DESC;
 
 
 
- --Клиенты, которые арендуют площади только на 1-х этажах
+ --РљР»РёРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ Р°СЂРµРЅРґСѓСЋС‚ РїР»РѕС‰Р°РґРё С‚РѕР»СЊРєРѕ РЅР° 1-С… СЌС‚Р°Р¶Р°С…
 
-    -- Реляционная модель:
-SELECT cl.Название AS Клиент
+    -- Р РµР»СЏС†РёРѕРЅРЅР°СЏ РјРѕРґРµР»СЊ:
+SELECT cl.РќР°Р·РІР°РЅРёРµ AS РљР»РёРµРЅС‚
 FROM Client cl
-    JOIN Contract c ON cl.ID = c.ID_Клиента
-    JOIN RetailPoint rp ON c.ID_Точки = rp.ID
-GROUP BY cl.ID, cl.Название
-HAVING MIN(rp.Этаж) = 1 
-    AND MAX(rp.Этаж) = 1 
-ORDER BY cl.Название;
+    JOIN Contract c ON cl.ID = c.ID_РљР»РёРµРЅС‚Р°
+    JOIN RetailPoint rp ON c.ID_РўРѕС‡РєРё = rp.ID
+GROUP BY cl.ID, cl.РќР°Р·РІР°РЅРёРµ
+HAVING MIN(rp.Р­С‚Р°Р¶) = 1 
+    AND MAX(rp.Р­С‚Р°Р¶) = 1 
+ORDER BY cl.РќР°Р·РІР°РЅРёРµ;
 
--- Графовая модель:
+-- Р“СЂР°С„РѕРІР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    client.name AS Клиент
+    client.name AS РљР»РёРµРЅС‚
 FROM 
     client_node AS client,
     contract_node AS contract,
@@ -67,30 +66,30 @@ ORDER BY
     client.name;
 
 
---Клиенты, имеющие задолженности по уплате аренды более 1 месяца
+--РљР»РёРµРЅС‚С‹, РёРјРµСЋС‰РёРµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё РїРѕ СѓРїР»Р°С‚Рµ Р°СЂРµРЅРґС‹ Р±РѕР»РµРµ 1 РјРµСЃСЏС†Р°
 
--- Реляционная модель:
+-- Р РµР»СЏС†РёРѕРЅРЅР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    cl.Название AS Клиент,
-    COUNT(p.ID) AS Количество_Просроченных_Платежей,
-    SUM(p.Сумма) AS Сумма_Задолженности
+    cl.РќР°Р·РІР°РЅРёРµ AS РљР»РёРµРЅС‚,
+    COUNT(p.ID) AS РљРѕР»РёС‡РµСЃС‚РІРѕ_РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹С…_РџР»Р°С‚РµР¶РµР№,
+    SUM(p.РЎСѓРјРјР°) AS РЎСѓРјРјР°_Р—Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё
 FROM 
     Client cl
-    JOIN Contract c ON cl.ID = c.ID_Клиента
-    JOIN Payment p ON c.ID = p.ID_Договора
+    JOIN Contract c ON cl.ID = c.ID_РљР»РёРµРЅС‚Р°
+    JOIN Payment p ON c.ID = p.ID_Р”РѕРіРѕРІРѕСЂР°
 WHERE 
-    p.Статус = 0 
+    p.РЎС‚Р°С‚СѓСЃ = 0 
 GROUP BY 
-    cl.ID, cl.Название
+    cl.ID, cl.РќР°Р·РІР°РЅРёРµ
 HAVING 
-    COUNT(DISTINCT p.Месяц) > 1  
+    COUNT(DISTINCT p.РњРµСЃСЏС†) > 1  
 
 
--- Графовая модель:
+-- Р“СЂР°С„РѕРІР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    client.name AS Клиент,
-    COUNT(DISTINCT payment.id) AS Количество_Просроченных_Платежей,
-    SUM(payment.amount) AS Сумма_Задолженности
+    client.name AS РљР»РёРµРЅС‚,
+    COUNT(DISTINCT payment.id) AS РљРѕР»РёС‡РµСЃС‚РІРѕ_РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹С…_РџР»Р°С‚РµР¶РµР№,
+    SUM(payment.amount) AS РЎСѓРјРјР°_Р—Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё
 FROM 
     client_node AS client,
     contract_node AS contract,
@@ -103,32 +102,32 @@ GROUP BY
 HAVING 
     COUNT(DISTINCT payment.month) > 1 
 
---Торговые точки, на которые не было заключено ни одного договора в течение последнего года
+--РўРѕСЂРіРѕРІС‹Рµ С‚РѕС‡РєРё, РЅР° РєРѕС‚РѕСЂС‹Рµ РЅРµ Р±С‹Р»Рѕ Р·Р°РєР»СЋС‡РµРЅРѕ РЅРё РѕРґРЅРѕРіРѕ РґРѕРіРѕРІРѕСЂР° РІ С‚РµС‡РµРЅРёРµ РїРѕСЃР»РµРґРЅРµРіРѕ РіРѕРґР°
 
--- Реляционная модель:
+-- Р РµР»СЏС†РёРѕРЅРЅР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    rp.Адрес,
-    rp.Этаж,
-    rp.Площадь,
-    rp.Стоимость_Аренды
+    rp.РђРґСЂРµСЃ,
+    rp.Р­С‚Р°Р¶,
+    rp.РџР»РѕС‰Р°РґСЊ,
+    rp.РЎС‚РѕРёРјРѕСЃС‚СЊ_РђСЂРµРЅРґС‹
 FROM 
     RetailPoint rp
 WHERE 
     rp.ID NOT IN (
-        SELECT DISTINCT c.ID_Точки
+        SELECT DISTINCT c.ID_РўРѕС‡РєРё
         FROM Contract c
-        WHERE c.Дата_Заключения >= DATEADD(YEAR, -1, GETDATE())
+        WHERE c.Р”Р°С‚Р°_Р—Р°РєР»СЋС‡РµРЅРёСЏ >= DATEADD(YEAR, -1, GETDATE())
     )
-    AND rp.Статус = 1  -- Свободные точки
+    AND rp.РЎС‚Р°С‚СѓСЃ = 1  -- РЎРІРѕР±РѕРґРЅС‹Рµ С‚РѕС‡РєРё
 ORDER BY 
-    rp.Этаж, rp.Стоимость_Аренды DESC;
+    rp.Р­С‚Р°Р¶, rp.РЎС‚РѕРёРјРѕСЃС‚СЊ_РђСЂРµРЅРґС‹ DESC;
 
--- Графовая модель:
+-- Р“СЂР°С„РѕРІР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    point.address AS Адрес,
-    point.floor AS Этаж,
-    point.area AS Площадь,
-    point.rental_cost AS Стоимость_Аренды
+    point.address AS РђРґСЂРµСЃ,
+    point.floor AS Р­С‚Р°Р¶,
+    point.area AS РџР»РѕС‰Р°РґСЊ,
+    point.rental_cost AS РЎС‚РѕРёРјРѕСЃС‚СЊ_РђСЂРµРЅРґС‹
 FROM 
     retail_point_node AS point
 WHERE 
@@ -147,32 +146,32 @@ ORDER BY
     point.floor, point.rental_cost DESC;
 
 
---Клиенты, заключившие наибольшее количество договоров на аренду
--- Реляционная модель:
+--РљР»РёРµРЅС‚С‹, Р·Р°РєР»СЋС‡РёРІС€РёРµ РЅР°РёР±РѕР»СЊС€РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРѕРіРѕРІРѕСЂРѕРІ РЅР° Р°СЂРµРЅРґСѓ
+-- Р РµР»СЏС†РёРѕРЅРЅР°СЏ РјРѕРґРµР»СЊ:
 SELECT 
-    cl.Название AS Клиент,
-    COUNT(c.ID) AS Количество_Договоров,
-    SUM(c.Финальная_Стоимость) AS Общая_Стоимость
+    cl.РќР°Р·РІР°РЅРёРµ AS РљР»РёРµРЅС‚,
+    COUNT(c.ID) AS РљРѕР»РёС‡РµСЃС‚РІРѕ_Р”РѕРіРѕРІРѕСЂРѕРІ,
+    SUM(c.Р¤РёРЅР°Р»СЊРЅР°СЏ_РЎС‚РѕРёРјРѕСЃС‚СЊ) AS РћР±С‰Р°СЏ_РЎС‚РѕРёРјРѕСЃС‚СЊ
 FROM 
     Client cl
-    JOIN Contract c ON cl.ID = c.ID_Клиента
+    JOIN Contract c ON cl.ID = c.ID_РљР»РёРµРЅС‚Р°
 GROUP BY 
-    cl.ID, cl.Название
+    cl.ID, cl.РќР°Р·РІР°РЅРёРµ
 HAVING 
     COUNT(c.ID) = (
-        SELECT MAX(Договоры) 
+        SELECT MAX(Р”РѕРіРѕРІРѕСЂС‹) 
         FROM (
-            SELECT COUNT(c2.ID) AS Договоры
+            SELECT COUNT(c2.ID) AS Р”РѕРіРѕРІРѕСЂС‹
             FROM Client cl2
-            JOIN Contract c2 ON cl2.ID = c2.ID_Клиента
+            JOIN Contract c2 ON cl2.ID = c2.ID_РљР»РёРµРЅС‚Р°
             GROUP BY cl2.ID
         ) AS MaxCount
     )
 ORDER BY 
-    Общая_Стоимость DESC;
+    РћР±С‰Р°СЏ_РЎС‚РѕРёРјРѕСЃС‚СЊ DESC;
 
--- Графовая модель:
--- Графовая модель:
+-- Р“СЂР°С„РѕРІР°СЏ РјРѕРґРµР»СЊ:
+-- Р“СЂР°С„РѕРІР°СЏ РјРѕРґРµР»СЊ:
 WITH client_contracts AS (
     SELECT 
         client.id,
@@ -192,9 +191,9 @@ max_contract_count AS (
     FROM client_contracts
 )
 SELECT 
-    cc.name AS Клиент,
-    cc.contract_count AS Количество_Договоров,
-    cc.total_cost AS Общая_Стоимость
+    cc.name AS РљР»РёРµРЅС‚,
+    cc.contract_count AS РљРѕР»РёС‡РµСЃС‚РІРѕ_Р”РѕРіРѕРІРѕСЂРѕРІ,
+    cc.total_cost AS РћР±С‰Р°СЏ_РЎС‚РѕРёРјРѕСЃС‚СЊ
 FROM 
     client_contracts cc
     CROSS JOIN max_contract_count mcc
