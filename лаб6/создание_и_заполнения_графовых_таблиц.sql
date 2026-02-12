@@ -46,19 +46,19 @@ CREATE TABLE applies_in AS EDGE;
 CREATE TABLE defines AS EDGE;
 
 INSERT INTO client_node (id, name, address, phone, contact_person)
-SELECT ID, Название, Юридический_Адрес, Телефон, ФИО_Контактного_Лица FROM Client;
+SELECT ID, РќР°Р·РІР°РЅРёРµ, Р®СЂРёРґРёС‡РµСЃРєРёР№_РђРґСЂРµСЃ, РўРµР»РµС„РѕРЅ, Р¤РРћ_РљРѕРЅС‚Р°РєС‚РЅРѕРіРѕ_Р›РёС†Р° FROM Client;
 
 INSERT INTO retail_point_node (id, address, floor, area, has_air_conditioner, rental_cost, status)
-SELECT ID, Адрес, Этаж, Площадь, Наличие_Кондиционера, Стоимость_Аренды, Статус FROM RetailPoint;
+SELECT ID, РђРґСЂРµСЃ, Р­С‚Р°Р¶, РџР»РѕС‰Р°РґСЊ, РќР°Р»РёС‡РёРµ_РљРѕРЅРґРёС†РёРѕРЅРµСЂР°, РЎС‚РѕРёРјРѕСЃС‚СЊ_РђСЂРµРЅРґС‹, РЎС‚Р°С‚СѓСЃ FROM RetailPoint;
 
 INSERT INTO contract_node (id, contract_number, start_date, end_date, final_cost)
-SELECT ID, Номер_Договора, Дата_Заключения, Дата_Окончания, Финальная_Стоимость FROM Contract;
+SELECT ID, РќРѕРјРµСЂ_Р”РѕРіРѕРІРѕСЂР°, Р”Р°С‚Р°_Р—Р°РєР»СЋС‡РµРЅРёСЏ, Р”Р°С‚Р°_РћРєРѕРЅС‡Р°РЅРёСЏ, Р¤РёРЅР°Р»СЊРЅР°СЏ_РЎС‚РѕРёРјРѕСЃС‚СЊ FROM Contract;
 
 INSERT INTO payment_node (id, month, amount, payment_date, charge_date, status)
-SELECT ID, Месяц, Сумма, Дата_Оплаты, Дата_Начисления_Платежа, Статус FROM Payment;
+SELECT ID, РњРµСЃСЏС†, РЎСѓРјРјР°, Р”Р°С‚Р°_РћРїР»Р°С‚С‹, Р”Р°С‚Р°_РќР°С‡РёСЃР»РµРЅРёСЏ_РџР»Р°С‚РµР¶Р°, РЎС‚Р°С‚СѓСЃ FROM Payment;
 
 INSERT INTO discount_node (id, name, size)
-SELECT ID_Скидки, Название, Размер FROM Discount;
+SELECT ID_РЎРєРёРґРєРё, РќР°Р·РІР°РЅРёРµ, Р Р°Р·РјРµСЂ FROM Discount;
 
 
 INSERT INTO conclude ($from_id, $to_id)
@@ -75,8 +75,8 @@ INSERT INTO applies_in ($from_id, $to_id)
 SELECT cn.$node_id, dn.$node_id
 FROM contract_node cn
 JOIN Contract c ON cn.id = c.ID
-JOIN discount_node dn ON c.ID_Скидки = dn.id
-WHERE c.ID_Скидки IS NOT NULL;
+JOIN discount_node dn ON c.ID_РЎРєРёРґРєРё = dn.id
+WHERE c.ID_РЎРєРёРґРєРё IS NOT NULL;
 
 INSERT INTO defines ($from_id, $to_id)
 SELECT cn.$node_id, pn.$node_id
@@ -84,19 +84,19 @@ FROM contract_node cn
 JOIN payment_node pn ON cn.id = pn.id;
 
 INSERT INTO client_node (id, name, address, phone, contact_person)
-SELECT ID, Название, Юридический_Адрес, Телефон, ФИО_Контактного_Лица FROM Client;
+SELECT ID, РќР°Р·РІР°РЅРёРµ, Р®СЂРёРґРёС‡РµСЃРєРёР№_РђРґСЂРµСЃ, РўРµР»РµС„РѕРЅ, Р¤РРћ_РљРѕРЅС‚Р°РєС‚РЅРѕРіРѕ_Р›РёС†Р° FROM Client;
 
 INSERT INTO retail_point_node (id, address, floor, area, has_air_conditioner, rental_cost, status)
-SELECT ID, Адрес, Этаж, Площадь, Наличие_Кондиционера, Стоимость_Аренды, Статус FROM RetailPoint;
+SELECT ID, РђРґСЂРµСЃ, Р­С‚Р°Р¶, РџР»РѕС‰Р°РґСЊ, РќР°Р»РёС‡РёРµ_РљРѕРЅРґРёС†РёРѕРЅРµСЂР°, РЎС‚РѕРёРјРѕСЃС‚СЊ_РђСЂРµРЅРґС‹, РЎС‚Р°С‚СѓСЃ FROM RetailPoint;
 
 INSERT INTO contract_node (id, contract_number, start_date, end_date, final_cost)
-SELECT ID, Номер_Договора, Дата_Заключения, Дата_Окончания, Финальная_Стоимость FROM Contract;
+SELECT ID, РќРѕРјРµСЂ_Р”РѕРіРѕРІРѕСЂР°, Р”Р°С‚Р°_Р—Р°РєР»СЋС‡РµРЅРёСЏ, Р”Р°С‚Р°_РћРєРѕРЅС‡Р°РЅРёСЏ, Р¤РёРЅР°Р»СЊРЅР°СЏ_РЎС‚РѕРёРјРѕСЃС‚СЊ FROM Contract;
 
 INSERT INTO payment_node (id, month, amount, payment_date, charge_date, status)
-SELECT ID, Месяц, Сумма, Дата_Оплаты, Дата_Начисления_Платежа, Статус FROM Payment;
+SELECT ID, РњРµСЃСЏС†, РЎСѓРјРјР°, Р”Р°С‚Р°_РћРїР»Р°С‚С‹, Р”Р°С‚Р°_РќР°С‡РёСЃР»РµРЅРёСЏ_РџР»Р°С‚РµР¶Р°, РЎС‚Р°С‚СѓСЃ FROM Payment;
 
 INSERT INTO discount_node (id, name, size)
-SELECT ID_Скидки, Название, Размер FROM Discount;
+SELECT ID_РЎРєРёРґРєРё, РќР°Р·РІР°РЅРёРµ, Р Р°Р·РјРµСЂ FROM Discount;
 
 
 INSERT INTO conclude ($from_id, $to_id)
@@ -113,8 +113,8 @@ INSERT INTO applies_in ($from_id, $to_id)
 SELECT cn.$node_id, dn.$node_id
 FROM contract_node cn
 JOIN Contract c ON cn.id = c.ID
-JOIN discount_node dn ON c.ID_Скидки = dn.id
-WHERE c.ID_Скидки IS NOT NULL;
+JOIN discount_node dn ON c.ID_РЎРєРёРґРєРё = dn.id
+WHERE c.ID_РЎРєРёРґРєРё IS NOT NULL;
 
 INSERT INTO defines ($from_id, $to_id)
 SELECT cn.$node_id, pn.$node_id
