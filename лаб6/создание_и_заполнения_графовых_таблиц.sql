@@ -1,3 +1,4 @@
+USE TradeRentalManagement;
 CREATE TABLE client_node (
     id INT PRIMARY KEY,
     name NVARCHAR(255) NOT NULL,
@@ -61,27 +62,34 @@ INSERT INTO discount_node (id, name, size)
 SELECT ID_Скидки, Название, Размер FROM Discount;
 
 
+-- 1. conclude (клиент → договор)
 INSERT INTO conclude ($from_id, $to_id)
-SELECT cn.$node_id, c.$node_id
+SELECT cn.$node_id, co.$node_id
 FROM client_node cn
-JOIN contract_node c ON cn.id = c.id;
+JOIN Contract c ON cn.id = c.ID_Клиента
+JOIN contract_node co ON c.ID = co.id;
 
+-- 2. rented (точка → договор)
 INSERT INTO rented ($from_id, $to_id)
-SELECT rn.$node_id, cn.$node_id
-FROM retail_point_node rn
-JOIN contract_node cn ON rn.id = cn.id;
+SELECT rp.$node_id, co.$node_id
+FROM retail_point_node rp
+JOIN Contract c ON rp.id = c.ID_Точки
+JOIN contract_node co ON c.ID = co.id;
 
+-- 3. applies_in (договор → скидка)
 INSERT INTO applies_in ($from_id, $to_id)
-SELECT cn.$node_id, dn.$node_id
-FROM contract_node cn
-JOIN Contract c ON cn.id = c.ID
+SELECT co.$node_id, dn.$node_id
+FROM contract_node co
+JOIN Contract c ON co.id = c.ID
 JOIN discount_node dn ON c.ID_Скидки = dn.id
 WHERE c.ID_Скидки IS NOT NULL;
 
+-- 4. defines (договор → платёж)
 INSERT INTO defines ($from_id, $to_id)
-SELECT cn.$node_id, pn.$node_id
-FROM contract_node cn
-JOIN payment_node pn ON cn.id = pn.id;
+SELECT co.$node_id, pn.$node_id
+FROM contract_node co
+JOIN Payment p ON co.id = p.ID_Договора
+JOIN payment_node pn ON p.ID = pn.id;
 
 
 
