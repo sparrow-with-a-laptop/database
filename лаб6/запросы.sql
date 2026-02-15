@@ -23,7 +23,8 @@ SELECT
     COUNT(DISTINCT contract.id) AS Количество_Договоров
 FROM 
     client_node AS client,
-    contract_node AS contract
+    contract_node AS contract,
+    conclude
 WHERE 
     MATCH(client-(conclude)->contract)
     AND YEAR(contract.start_date) = YEAR(GETDATE())
@@ -54,7 +55,8 @@ SELECT
 FROM 
     client_node AS client,
     contract_node AS contract,
-    retail_point_node AS retail_point
+    retail_point_node AS retail_point,
+    conclude, rented
 WHERE 
     MATCH(client-(conclude)->contract<-(rented)-retail_point)
 GROUP BY 
@@ -93,7 +95,8 @@ SELECT
 FROM 
     client_node AS client,
     contract_node AS contract,
-    payment_node AS payment
+    payment_node AS payment,
+    conclude, defines
 WHERE 
     MATCH(client-(conclude)->contract-(defines)->payment)
       AND payment.status = 0
@@ -136,7 +139,8 @@ WHERE
         SELECT 1
         FROM 
             retail_point_node AS rp,
-            contract_node AS con
+            contract_node AS con,
+            rented
         WHERE 
             MATCH(rp-(rented)->con)
             AND rp.id = point.id
@@ -171,7 +175,6 @@ ORDER BY
     Общая_Стоимость DESC;
 
 -- Графовая модель:
--- Графовая модель:
 WITH client_contracts AS (
     SELECT 
         client.id,
@@ -180,7 +183,8 @@ WITH client_contracts AS (
         SUM(contract.final_cost) AS total_cost
     FROM 
         client_node AS client,
-        contract_node AS contract
+        contract_node AS contract,
+        conclude
     WHERE 
         MATCH(client-(conclude)->contract)
     GROUP BY 
